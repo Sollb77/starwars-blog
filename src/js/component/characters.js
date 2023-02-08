@@ -1,5 +1,7 @@
-import {useEffect} from "react";
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
+//import { useParams } from "react-router-dom";
+//import { getCharacters } from "../helpers/getCharacters";
 
 
 
@@ -7,47 +9,41 @@ import React from "react";
 export const Characters = () => {
 
     const [characters, setCharacters] = useState([]);
-    const [people, setPeople] = useState([]);
 
-   // let Characters = 
-   
+	const setCharactersAsync = async () => {
+		const characterList = await getCharacters();
+		setCharacters(characterList?.results);
+	}
 
-
-    const getCharacters = async () => {
-        try {
-            const response = await
-            fetch("https://swapi.dev/api/people")
-                .then(response => response.json())
-                .then(data => console.log(data))
-
-        } catch (error) {
-
-            console.log(error)
-        }
+	useEffect(() => {setCharactersAsync()},[])
 
         return (
-            <div className = "card" style = {{width: "18rem"}}>
-            <img src = "https://starwars-visualguide.com/assets/img/characters/1.jpg" className = "card-img-top" alt = "..." />
-            <div className = "card-body" >
-            <h5 className = "card-title" > name </h5> 
-             <p className = "card-text" > Some quick example text to build on the card title and make up the bulk of the card 's content.</p>  
-             </div>  
-             <ul className = "list-group list-group-flush" >
-            <li className = "list-group-item" > An item </li> 
-             <li className = "list-group-item" > A second item </li> 
-              <li className = "list-group-item" > A third item </li>  
-              </ul >
-               < div className = "card-body" >
-            <a href = "#" className = "card-link" > Card link </a> 
-        <a href = "#" className = "card-link" > Another link </a>
-         </div>
-    
-            </div>
-            
+            <div className="container mt-2">
+			<h2>Characters</h2>
+			<div className="card-container mt-4 p-2 d-flex justify-content-between">
+				{characters.map( ( {name, hair_color, eye_color, gender}, i ) => (
+					<div key= {i} className="card me-5">
+						<img src={`https://starwars-visualguide.com/assets/img/characters/${i+1}.jpg`} className="card-img-top" alt="Loading from API" />
+						<div className="card-body p-3">
+							<h4 className="card-title">{name}</h4>
+							<p className="card-text"> Gender: {gender}</p>
+							<p className="card-text"> Hair Color: {hair_color}</p>
+							<p className="card-text"> Eye-Color: {eye_color}</p>
+						</div>
+						<div className="card-footer d-flex justify-content-between">
+							<Link to={`/infoCharacters/${i+1}`}>
+								<button className="btn btn-outline-primary">Learn More!</button>
+							</Link>
+							<button className="like btn btn-outline-warning"><i className="far fa-heart"></i></button>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
 
 
         )
 
 
     }
-}
