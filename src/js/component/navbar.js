@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export const Navbar = () => {
-    return ( <nav className = "navbar bg-light " >
+    return ( <nav className = "navbar bg-light d-flex justify-content-between" >
         <div className = "container-fluid d-flex justify-content-start " >
         <a className = "navbar-brand" href = "#" />
         <Link to="/">
