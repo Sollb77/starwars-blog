@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 //import { getCharacters } from "../helpers/getCharacters";
 //include your index.scss file into the bundle
 import "../../styles/index.css";
-
+import { FavoritesContext } from "../context/FavoriteContext.jsx";
 
 
 export const Characters = () => {
+
+const { addFavorites, favorites } = useContext(FavoritesContext);	
 
 const [characters, setCharacters] = useState([]);
 
@@ -50,7 +52,10 @@ return (
 	 <button className="btn btn-outline-primary p-2 mb-2 rounded"> Mas detalles</button>
 
       </Link>
-     <button className="p-2 mb-3 text-warning border border-warning push-right rounded"> <i className="fas fa-heart"></i></button>
+     <button className="p-2 mb-3 text-warning border border-warning push-right rounded"> 
+
+    <i className={favorites.includes(item.name) ? "fas fa-heart" : "far fa-heart"}onClick={()=>{addFavorites(item.name)}} ></i></button>
+
     </div>
     {/* <a href="" className="btn btn-primary">Mas detalles</a> */}
   </div>

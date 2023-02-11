@@ -1,8 +1,11 @@
 import React from "react";
-
+import { FavoritesContext } from "../context/favoriteContext.jsx";
 import {Link} from "react-router-dom";
 
 export const Navbar = () => {
+
+    const { deleteFavorites , favorites } = useContext(FavoritesContext)
+
     return ( <nav className = "navbar bg-light d-flex justify-content-between" >
         <div className = "container-fluid d-flex justify-content-between" >
         <div>
@@ -13,24 +16,21 @@ export const Navbar = () => {
         height ={80}/> 
         </Link> 
         </div>
-        <div className = "btn-group " >
-        <button type = "button"
-        className = "btn btn-primary dropdown-toggle m-4"
-        data-bs-toggle = "dropdown"
-        aria-expanded = "false" >
-        Favorites</button> 
 
-         <ul className = "dropdown-menu" >
-        <li> <a className = "dropdown-item"
-        href = "#" > Favorites </a></li >
-        <li> <a className = "dropdown-item"
-        href = "#" > Another action </a></li >
-        <li >
-        <a className = "dropdown-item" href = "#" > Something else here </a></li >
-        <li> <a className = "dropdown-item" href = "#"> Separated link </a></li >
-        </ul> 
-        </div>
-         </div>  
+        <div className="dropdown ml-auto">
+				<button className="btn btn-primary dropdown-toggle p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Favorites
+					<span className="badge bg-secondary rounded-pill">{favorites.length}</span>
+				</button>
+				<ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
+					{favorites.map( ( name, i ) => (
+						<li key={i} className="dropdown-item favorite d-flex justify-content-between p-2">{name}<i className="fas fa-trash" onClick={()=>{deleteFavorites(name)}} ></i></li>
+					))}	
+				</ul>
+			</div>
+
+            </div>
+
          </nav>
 
 

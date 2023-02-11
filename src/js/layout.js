@@ -7,7 +7,7 @@ import {Home} from "./views/home";
 import {Demo} from "./views/demo";
 import {Single} from "./views/single";
 import injectContext from "./store/appContext";
-
+import {FavoritesProvider} from "./context/favoriteProvider.jsx";
 import {Navbar} from "./component/navbar";
 import {Footer} from "./component/footer";
 
@@ -20,6 +20,7 @@ const Layout = () => {
     return ( 
 		<div>
             <BrowserRouter basename = {basename}>
+                <FavoritesProvider>
             <ScrollToTop>
             <Navbar/>
             <Routes>
@@ -32,6 +33,7 @@ const Layout = () => {
             </Routes> 
 			<Footer/>
             </ScrollToTop>
+            </FavoritesProvider>
 			</BrowserRouter>
 		</div>
     );
