@@ -44,10 +44,10 @@ return (
     <p className="card-text">
 		<strong>Climate:</strong> <span className="emphasized">{it.climate} </span><br />
 		<strong>Diameter:</strong> <span className="emphasized">{it.diameter}</span> <br />
-        <strong>Gravity:</strong> <span className="emphasized">{it.gravity}</span> <br />
+        <strong>Population:</strong> <span className="emphasized">{it.population}</span> <br />
 
 	</p>
-	<div className="d-flex justify-content-between">
+	<div className="d-flex justify-content-between mt-auto ">
 	 <Link  to={"/planetficha/"+(num+1)}>
 	 <button className="btn btn-outline-primary p-2 mb-2 rounded"> Mas detalles</button>
 

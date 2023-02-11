@@ -6,11 +6,11 @@ import {useState} from "react";
 
 export const Planetficha = () => {
 
-    const param = useParams();
+    const params = useParams();
     const [planet, setPlanet] = useState({})
     const planeta = async () => {
         try {
-            const response = await fetch("https://www.swapi.tech/api/planets" + param.theid);
+            const response = await fetch("https://swapi.dev/api/planets/" + params.theid);
             //console.log(response);
             const data = await response.json();
             console.log(data);
@@ -28,14 +28,13 @@ export const Planetficha = () => {
 
 
 
-    return 
-    (
+    return (
        <>
 
 
         <div className = "container flex-column" >
         <div className = "d-flex justify-content-around m-3 p-3 " >
-        <img src = {"https://starwars-visualguide.com/assets/img/planets/" + param.theid + ".jpg"}
+        <img src = {"https://starwars-visualguide.com/assets/img/planets/" + params.theid + ".jpg"}
         alt = ""
         width = {800}
         height = {600}
@@ -51,18 +50,18 @@ export const Planetficha = () => {
         <table className = "table  ">
         <thead>
         <tr>
-        <th scope = "col" > name </th>  
-        <th scope = "col" > Birth yeard </th> 
-        <th scope = "col" > Gender </th> 
-        <th scope = "col" > Height </th> 
-        <th scope = "col" > Skin Color </th>
-        <th scope = "col" > Eye Color </th> 
+        <th scope = "col" > Name </th>  
+        <th scope = "col" > Diameter </th> 
+        <th scope = "col" > Gravity </th> 
+        <th scope = "col" > Terrain </th> 
+        <th scope = "col" > Population </th>
+        <th scope = "col" > Climate </th> 
       </tr>  
       </thead>  
       <tbody class = "table-group-divider" >
         <tr>
         <th scope = "row" > 
-        {planet.climate} </th> 
+        {planet.name} </th> 
          <td> 
             {planet.diameter} </td> 
              <td> 
@@ -74,7 +73,7 @@ export const Planetficha = () => {
                      {planet.population}
                       </td>  
                       <td> 
-                        {planet.rotation_period} 
+                        {planet.climate} 
                         </td> 
 
         </tr>  
