@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 //import { getCharacters } from "../helpers/getCharacters";
 //include your index.scss file into the bundle
 import "../../styles/index.css";
-import { FavoritesContext } from "../context/FavoriteContext.jsx";
+import { useContext } from "react";
+import { FavoritesContext } from "../context/favoriteContext.jsx";
 
 
 export const Characters = () => {

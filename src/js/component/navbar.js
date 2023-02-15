@@ -1,7 +1,7 @@
 import React from "react";
 import { FavoritesContext } from "../context/favoriteContext.jsx";
 import {Link} from "react-router-dom";
-
+import { useContext } from "react";
 export const Navbar = () => {
 
     const { deleteFavorites , favorites } = useContext(FavoritesContext)
